@@ -19,6 +19,7 @@ Welcome to the AI Hackathon!
 | Username | Contact | Role | Team |
 |----------|---------|------|------|
 | alice | alice@example.com | Developer | AI Explorers |
+| test | 1 | 1 | 1 |
 
 
 ## Projects
@@ -30,9 +31,9 @@ Welcome to the AI Hackathon!
 
 ## Statistics
 
-- **Total Participants**: 1
-- **Teams**: 1
+- **Total Participants**: 2
+- **Teams**: 2
 - **Developers**: 1
 - **Designers**: 0
 
-*Last updated: 2025-05-20 16:03:40*
+*Last updated: 2025-05-20 08:36:37*

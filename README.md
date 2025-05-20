@@ -22,16 +22,16 @@ Welcome to the **Casual Hackathon** platform! This is a place to organize, parti
 
 | Hackathon | Date | Theme | Participants | Projects |
 | --------- | ---- | ----- | ------------ | -------- |
-| [AI Hackathon](hackathons/1-AI/README.md) | May 20-22, 2025 | Artificial Intelligence in Web3 | 1 | 1 |
+| [AI Hackathon](hackathons/1-AI/README.md) | May 20-22, 2025 | Artificial Intelligence in Web3 | 2 | 1 |
 | [7702 Hackathon](hackathons/2-7702/README.md) | June 15-17, 2025 | Blockchain Innovation | 0 | 0 |
 
 
 ## 📊 Statistics
 
 - **Total Hackathons**: 2
-- **Total Participants**: 1
+- **Total Participants**: 2
 - **Total Projects**: 1
 
 ---
 
-*Last updated: 2025-05-20 16:03:40*
+*Last updated: 2025-05-20 08:36:37*
