@@ -48,5 +48,6 @@ jobs:
             git config --global user.email "github-actions[bot]@users.noreply.github.com"
             git add README.md hackathons/*/README.md
             git commit -m "Update hackathon information"
+            git pull --rebase origin main
             git push
           fi
