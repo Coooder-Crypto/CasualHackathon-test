@@ -38,9 +38,11 @@ jobs:
           python scripts/update_hackathon.py
 
       - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if git diff --quiet README.md hackathons/*/README.md; then
-            echo "No changes to README files. Skipping commit."
+            echo "No changes to files. Skipping commit."
           else
             git config --global user.name "github-actions[bot]"
             git config --global user.email "github-actions[bot]@users.noreply.github.com"
