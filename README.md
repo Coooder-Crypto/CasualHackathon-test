@@ -19,24 +19,12 @@ Welcome to the 7702 Hackathon!
 
 | Username | Contact | Role | Team |
 |----------|---------|------|------|
-=======
-| Hackathon | Date | Theme | Participants | Projects |
-| --------- | ---- | ----- | ------------ | -------- |
-| [AI Hackathon](hackathons/1-AI/README.md) | May 20-22, 2025 | Artificial Intelligence in Web3 | 2 | 1 |
-| [7702 Hackathon](hackathons/2-7702/README.md) | June 15-17, 2025 | Blockchain Innovation | 0 | 0 |
->>>>>>> f54c2a87f84ab8d64b5a28d25516b188a160304d
 
 
 ## Projects
 
-<<<<<<< HEAD
 | Project Name | Description | Link | Team Members |
 |--------------|-------------|------|-------------|
-=======
-- **Total Hackathons**: 2
-- **Total Participants**: 2
-- **Total Projects**: 1
->>>>>>> f54c2a87f84ab8d64b5a28d25516b188a160304d
 
 
 ## Statistics
@@ -46,4 +34,4 @@ Welcome to the 7702 Hackathon!
 - **Developers**: 0
 - **Designers**: 0
 
-*Last updated: 2025-05-20 08:36:37*
+*Last updated: 2025-05-25 12:51:07*
