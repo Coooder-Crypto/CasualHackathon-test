@@ -61,9 +61,9 @@ def parse_file(file_path):
         print(f"Error reading file {file_path}: {e}")
         return None
 
-def scan_registration_files(hackathon_dir):
+def scan_registration_files():
     """Scan the registration directory for markdown files."""
-    registration_dir = os.path.join(hackathon_dir, 'registration')
+    registration_dir = os.path.join(os.getcwd(), 'registration')
     if not os.path.exists(registration_dir):
         print(f"Registration directory not found: {registration_dir}")
         return []
@@ -72,9 +72,9 @@ def scan_registration_files(hackathon_dir):
     # Exclude template.md
     return [f for f in files if not f.endswith('template.md')]
 
-def scan_demo_files(hackathon_dir):
+def scan_demo_files():
     """Scan the demos directory for markdown files."""
-    demos_dir = os.path.join(hackathon_dir, 'demos')
+    demos_dir = os.path.join(os.getcwd(), 'demos')
     if not os.path.exists(demos_dir):
         print(f"Demos directory not found: {demos_dir}")
         return []
@@ -83,12 +83,12 @@ def scan_demo_files(hackathon_dir):
     # Exclude template.md
     return [f for f in files if not f.endswith('template.md')]
 
-def generate_hackathon_readme(hackathon_dir, registrations, demos):
-    """Generate the README.md for a specific hackathon."""
-    readme_path = os.path.join(hackathon_dir, 'README.md')
+def generate_hackathon_readme(registrations, demos):
+    """Generate the README.md for the hackathon."""
+    readme_path = os.path.join(os.getcwd(), 'README.md')
     
-    # Get hackathon name from directory
-    hackathon_name = os.path.basename(hackathon_dir).split('-', 1)[1] + " Hackathon"
+    # Get hackathon name from the config or use default
+    hackathon_name = "7702 Hackathon"  # Default name, can be customized
     
     # Try to read existing README to preserve custom content
     existing_content = ""
@@ -199,151 +199,34 @@ def generate_hackathon_readme(hackathon_dir, registrations, demos):
     return {
         'name': hackathon_name,
         'participants': total_participants,
-        'projects': len(demos),
-        'directory': hackathon_dir
+        'projects': len(demos)
     }
 
-def update_main_readme(hackathons_data):
-    """Update the main README.md with hackathon information."""
-    readme_path = os.path.join(os.getcwd(), 'README.md')
-    
-    # Try to read existing README to preserve introduction
-    introduction = ""
-    how_to_participate = ""
-    
-    try:
-        with open(readme_path, 'r', encoding='utf-8') as f:
-            content = f.read()
-            
-            # Extract introduction if it exists
-            intro_match = re.search(r'# Casual Hackathon\s+(.+?)(?=##|\Z)', content, re.DOTALL)
-            if intro_match:
-                introduction = intro_match.group(1).strip()
-                
-            # Extract how to participate section if it exists
-            how_match = re.search(r'## How to Participate\s+(.+?)(?=##|\Z)', content, re.DOTALL)
-            if how_match:
-                how_to_participate = how_match.group(1).strip()
-    except:
-        # If README doesn't exist or can't be read, use default content
-        introduction = "Welcome to the **Casual Hackathon** platform! This is a place to organize, participate in, and showcase innovative hackathons in the Web3 space. Whether you're a developer, designer, or enthusiast, you can join our hackathons and build amazing projects."
-        how_to_participate = """1. Browse the available hackathons in the `hackathons/` directory
-2. To register for a hackathon:
-   - Navigate to the specific hackathon folder (e.g., `hackathons/1-AI/`)
-   - Copy the registration template from the `registration/` folder
-   - Create a new file with your username (e.g., `your-username.md`)
-   - Fill in all required fields in the template
-   - Submit a Pull Request
-3. To submit a project:
-   - Navigate to the specific hackathon folder
-   - Copy the demo template from the `demos/` folder
-   - Create a new file with your project name (e.g., `your-project.md`)
-   - Fill in all required fields in the template
-   - Submit a Pull Request"""
-    
-    # Generate hackathons table
-    hackathons_table = "| Hackathon | Date | Theme | Participants | Projects |\n| --------- | ---- | ----- | ------------ | -------- |\n"
-    
-    total_participants = 0
-    total_projects = 0
-    
-    for hackathon in hackathons_data:
-        # Extract date and theme from README
-        hackathon_readme_path = os.path.join(hackathon['directory'], 'README.md')
-        date = "TBD"
-        theme = "TBD"
-        
-        try:
-            with open(hackathon_readme_path, 'r', encoding='utf-8') as f:
-                content = f.read()
-                
-                # Extract date
-                date_match = re.search(r'\*\*Date\*\*:\s*(.+?)(?=\n)', content)
-                if date_match:
-                    date = date_match.group(1).strip()
-                
-                # Extract theme
-                theme_match = re.search(r'\*\*Theme\*\*:\s*(.+?)(?=\n)', content)
-                if theme_match:
-                    theme = theme_match.group(1).strip()
-        except:
-            pass
-        
-        # Get relative path for the link
-        rel_path = os.path.relpath(hackathon_readme_path, os.getcwd())
-        
-        hackathons_table += f"| [{hackathon['name']}]({rel_path}) | {date} | {theme} | {hackathon['participants']} | {hackathon['projects']} |\n"
-        
-        total_participants += hackathon['participants']
-        total_projects += hackathon['projects']
-    
-    # Generate README content
-    content = [
-        "# Casual Hackathon",
-        "",
-        introduction,
-        "",
-        "## How to Participate",
-        "",
-        how_to_participate,
-        "",
-        "## 🚀 Current Hackathons",
-        "",
-        hackathons_table,
-        "",
-        "## 📊 Statistics",
-        "",
-        f"- **Total Hackathons**: {len(hackathons_data)}",
-        f"- **Total Participants**: {total_participants}",
-        f"- **Total Projects**: {total_projects}",
-        "",
-        "---",
-        "",
-        f"*Last updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}*"
-    ]
-    
-    # Write README
-    with open(readme_path, "w", encoding='utf-8') as f:
-        f.write("\n".join(content))
-    
-    print(f"Updated main README.md with {len(hackathons_data)} hackathons")
+# This function is no longer needed as we're not aggregating multiple hackathons
+# def update_main_readme(hackathons_data):
+#     """Update the main README.md with hackathon information."""
+#     pass
 
-def update_all_hackathons():
-    """Update all hackathon READMEs and the main README."""
-    hackathons_dir = os.path.join(os.getcwd(), 'hackathons')
-    if not os.path.exists(hackathons_dir):
-        print(f"Hackathons directory not found: {hackathons_dir}")
-        return
+def update_hackathon():
+    """Update the hackathon README with registration and demo information."""
+    # Process registration files
+    registration_files = scan_registration_files()
+    registrations = []
+    for file in registration_files:
+        data = parse_file(file)
+        if data and data['type'] == 'registration':
+            registrations.append(data)
     
-    # Get all hackathon directories
-    hackathon_dirs = [os.path.join(hackathons_dir, d) for d in os.listdir(hackathons_dir) 
-                     if os.path.isdir(os.path.join(hackathons_dir, d))]
+    # Process demo files
+    demo_files = scan_demo_files()
+    demos = []
+    for file in demo_files:
+        data = parse_file(file)
+        if data and data['type'] == 'demo':
+            demos.append(data)
     
-    hackathons_data = []
-    
-    for hackathon_dir in hackathon_dirs:
-        # Process registration files
-        registration_files = scan_registration_files(hackathon_dir)
-        registrations = []
-        for file in registration_files:
-            data = parse_file(file)
-            if data and data['type'] == 'registration':
-                registrations.append(data)
-        
-        # Process demo files
-        demo_files = scan_demo_files(hackathon_dir)
-        demos = []
-        for file in demo_files:
-            data = parse_file(file)
-            if data and data['type'] == 'demo':
-                demos.append(data)
-        
-        # Generate hackathon README
-        hackathon_data = generate_hackathon_readme(hackathon_dir, registrations, demos)
-        hackathons_data.append(hackathon_data)
-    
-    # Update main README
-    update_main_readme(hackathons_data)
+    # Generate hackathon README
+    generate_hackathon_readme(registrations, demos)
 
 if __name__ == '__main__':
-    update_all_hackathons()
+    update_hackathon()

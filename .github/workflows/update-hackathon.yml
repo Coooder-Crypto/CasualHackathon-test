@@ -5,12 +5,14 @@ on:
     branches:
       - main
     paths:
-      - 'hackathons/**/*.md'
+      - 'demos/*.md'
+      - 'registration/*.md'
   pull_request:
     branches:
       - main
     paths:
-      - 'hackathons/**/*.md'
+      - 'demos/*.md'
+      - 'registration/*.md'
 
 jobs:
   update-hackathon:
@@ -33,7 +35,7 @@ jobs:
       - name: Debug modified or added files
         run: |
           echo "Modified or added files:"
-          git diff --no-commit-id --name-only --diff-filter=AM -r HEAD -- 'hackathons/'
+          git diff --no-commit-id --name-only --diff-filter=AM -r HEAD -- 'demos/' 'registration/'
 
       - name: Update hackathon information
         run: |
@@ -41,12 +43,12 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          if git diff --quiet README.md hackathons/*/README.md; then
+          if git diff --quiet README.md; then
             echo "No changes to files. Skipping commit."
           else
             git config --global user.name "github-actions[bot]"
             git config --global user.email "github-actions[bot]@users.noreply.github.com"
-            git add README.md hackathons/*/README.md
+            git add README.md
             git commit -m "Update hackathon information"
             git pull --rebase origin main
             git push
