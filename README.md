@@ -18,6 +18,7 @@ Welcome to the 7702 Hackathon!
 
 | Username | Contact | Role | Team |
 |----------|---------|------|------|
+| Coooder | coooder@163.com | Developer |  |
 
 
 ## Projects
@@ -28,9 +29,9 @@ Welcome to the 7702 Hackathon!
 
 ## Statistics
 
-- **Total Participants**: 0
+- **Total Participants**: 1
 - **Teams**: 0
-- **Developers**: 0
+- **Developers**: 1
 - **Designers**: 0
 
-*Last updated: 2025-05-25 12:51:07*
+*Last updated: 2025-05-26 08:29:53*
