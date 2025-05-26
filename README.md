@@ -25,6 +25,7 @@ Welcome to the 7702 Hackathon!
 
 | Project Name | Description | Link | Team Members |
 |--------------|-------------|------|-------------|
+| 7702-demo | 7702-demo |  | Coooder |
 
 
 ## Statistics
@@ -34,4 +35,4 @@ Welcome to the 7702 Hackathon!
 - **Developers**: 1
 - **Designers**: 0
 
-*Last updated: 2025-05-26 08:29:53*
+*Last updated: 2025-05-26 08:31:57*
