@@ -1,24 +1,32 @@
-# Hackathon Registration
+# 🚀 Hackathon Registration
 
 <!--
 Please fill out the information below. This information will be automatically processed.
 Do not remove the --- markers or change the field names.
 -->
 
----
-# Personal Information
-username: "Coooder" # Your username (required)
-contact: "coooder@163.com" # Your email or preferred contact method (required)
-wallet_address: "0x1234567890123456789012345678901234567890" # Your wallet address (required)
-role: "Developer" # Developer or Designer (required)
+## 👤 Personal Information (required)
 
-# Team Information
-team_name: "" # Your team name (optional)
-idea: "" # Brief description of your project idea (optional)
+```yaml
+username: "Coooder" # Your username
+contact: "@Coooder" # Your tg or preferred contact method
+wallet_address: "" # Your wallet address
+role: "Developer" # Developer or Designer or whatever you are
+```
 
-# Additional Information
-support_needed: "" # What kind of support are you looking for? (optional)
-notes: "" # Any additional information (optional)
+## 👥 Team Information (optional)
+
+```yaml
+team_name: "" # Your team name
+idea: "" # Brief description of your project idea
+```
+
+## ℹ️ Additional Information (optional)
+
+```yaml
+support_needed: "" # What kind of support are you looking for?
+notes: "" # Any additional information
+```
 ---
 
 <!-- Do not edit below this line. This section will be automatically generated when your registration is processed. -->
